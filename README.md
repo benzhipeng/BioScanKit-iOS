@@ -16,11 +16,11 @@ Host apps own recognition engines, navigation, analytics, credentials, product i
 ## CocoaPods integration
 
 ```ruby
-pod 'BioScanDesign', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
-pod 'BioScanCloudSync', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
-pod 'BioScanSettings', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
-pod 'BioScanCapture', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
-pod 'BioScanPaywall', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
+pod 'BioScanDesign', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.1'
+pod 'BioScanCloudSync', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.1'
+pod 'BioScanSettings', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.1'
+pod 'BioScanCapture', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.1'
+pod 'BioScanPaywall', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.1'
 ```
 
 Declare only the modules needed by the host app, then run `pod install` and open the generated workspace.

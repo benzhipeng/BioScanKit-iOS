@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BioScanCapture'
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.summary = 'Shared camera and recognition flows for BioScan apps.'
   s.homepage = 'https://github.com/benzhipeng/BioScanKit-iOS'
   s.license = { :type => 'Proprietary' }
