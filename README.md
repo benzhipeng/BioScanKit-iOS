@@ -1,6 +1,6 @@
 # BioScanKit iOS
 
-Native SwiftUI components shared by the BioScan app family.
+Native SwiftUI components shared by the BioScan app family, distributed through CocoaPods.
 
 ## Modules
 
@@ -13,23 +13,22 @@ Native SwiftUI components shared by the BioScan app family.
 
 Host apps own recognition engines, navigation, analytics, credentials, product identifiers, persistence, and branded assets.
 
-## Local integration
+## CocoaPods integration
 
-```yaml
-packages:
-  BioScanKit:
-    path: ../../BioScanKit-iOS
+```ruby
+pod 'BioScanDesign', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
+pod 'BioScanCloudSync', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
+pod 'BioScanSettings', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
+pod 'BioScanCapture', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
+pod 'BioScanPaywall', :git => 'https://github.com/benzhipeng/BioScanKit-iOS.git', :tag => '0.1.0'
 ```
+
+Declare only the modules needed by the host app, then run `pod install` and open the generated workspace.
 
 Shared recommendation data and icons live in `Shared/`. The `Scripts/copy_app_recommendations.sh` helper copies them into an app bundle during an Xcode build.
 
-## Build
+## Validation
 
 ```sh
-xcodebuild \
-  -scheme BioScanKit \
-  -destination 'generic/platform=iOS Simulator' \
-  -derivedDataPath /tmp/BioScanKit-DerivedData \
-  CODE_SIGNING_ALLOWED=NO \
-  build
+pod spec lint BioScanDesign.podspec --allow-warnings
 ```
