@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '18.0'
   s.swift_version = '5.9'
   s.source_files = 'Sources/BioScanPaywall/**/*.swift'
+  s.resource_bundles = { 'BioScanPaywallResources' => ['Sources/BioScanPaywall/Resources/**/*'] }
   s.frameworks = 'StoreKit', 'SwiftUI'
   s.dependency 'BioScanDesign', s.version.to_s
 end

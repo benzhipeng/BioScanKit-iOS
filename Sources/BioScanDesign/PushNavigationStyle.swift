@@ -16,7 +16,7 @@ private struct BioScanPushNavigationModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .navigationTitle(title)
+            .navigationTitle(BioScanDesignL10n.string(title))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(.visible, for: .navigationBar)
             .toolbarBackground(.hidden, for: .navigationBar)

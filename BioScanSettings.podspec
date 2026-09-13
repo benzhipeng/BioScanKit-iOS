@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '18.0'
   s.swift_version = '5.9'
   s.source_files = 'Sources/BioScanSettings/**/*.swift'
+  s.resource_bundles = { 'BioScanSettingsResources' => ['Sources/BioScanSettings/Resources/**/*'] }
   s.resources = ['Shared/RecommendedApps.json', 'Shared/Icons/*.png']
   s.frameworks = 'SwiftUI', 'UIKit'
   s.dependency 'BioScanDesign', s.version.to_s

@@ -24,19 +24,19 @@ public struct PurchaseRecoverySheet: View {
                 .accessibilityHidden(true)
 
             VStack(spacing: 6) {
-                Text("\(coordinator.configuration.bonusCredits) free identifications")
+                Text(String(format: BioScanPaywallL10n.string("%d free identifications"), coordinator.configuration.bonusCredits))
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
                     .foregroundStyle(theme.primaryText.resolve(for: colorScheme))
 
-                Text("Keep exploring on us.")
+                Text(BioScanPaywallL10n.string("Keep exploring on us."))
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(theme.secondaryText.resolve(for: colorScheme))
             }
 
             if let error = coordinator.lastError {
-                Text(error)
+                Text(BioScanPaywallL10n.string(error))
                     .font(.footnote)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(theme.warning)
@@ -48,7 +48,7 @@ public struct PurchaseRecoverySheet: View {
                         if coordinator.isClaiming {
                             ProgressView().tint(.white)
                         } else {
-                            Text("Claim \(coordinator.configuration.bonusCredits)")
+                            Text(String(format: BioScanPaywallL10n.string("Claim %d"), coordinator.configuration.bonusCredits))
                         }
                     }
                     .font(.headline)
@@ -62,7 +62,7 @@ public struct PurchaseRecoverySheet: View {
                 .buttonStyle(.plain)
                 .disabled(coordinator.isClaiming)
 
-                Button("Not now", action: coordinator.dismissOffer)
+                Button(BioScanPaywallL10n.string("Not now"), action: coordinator.dismissOffer)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(theme.secondaryText.resolve(for: colorScheme))
                     .disabled(coordinator.isClaiming)

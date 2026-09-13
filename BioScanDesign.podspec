@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '18.0'
   s.swift_version = '5.9'
   s.source_files = 'Sources/BioScanDesign/**/*.swift'
+  s.resource_bundles = { 'BioScanDesignResources' => ['Sources/BioScanDesign/Resources/**/*'] }
   s.frameworks = 'SwiftUI'
 end

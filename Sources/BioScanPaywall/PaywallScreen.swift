@@ -34,7 +34,7 @@ public struct PaywallScreen<Hero: View>: View {
             }
         }
         .alert(
-            store.notice?.title ?? "",
+            BioScanPaywallL10n.string(store.notice?.title ?? ""),
             isPresented: Binding(
                 get: { store.notice != nil },
                 set: { isPresented in
@@ -44,11 +44,11 @@ public struct PaywallScreen<Hero: View>: View {
                 }
             )
         ) {
-            Button("OK", role: .cancel) {
+            Button(BioScanPaywallL10n.string("OK"), role: .cancel) {
                 store.clearNotice()
             }
         } message: {
-            Text(store.notice?.message ?? "")
+            Text(BioScanPaywallL10n.string(store.notice?.message ?? ""))
         }
         .task {
             store.appeared()

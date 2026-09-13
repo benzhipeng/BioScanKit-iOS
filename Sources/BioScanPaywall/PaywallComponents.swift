@@ -15,11 +15,11 @@ struct PaywallTopBar: View {
                     .contentShape(.rect)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("Close")
+            .accessibilityLabel(BioScanPaywallL10n.string("Close"))
 
             Spacer()
 
-            Button(restoreTitle) {
+            Button(BioScanPaywallL10n.string(restoreTitle)) {
                 Task {
                     await store.restorePurchases()
                 }
@@ -42,7 +42,7 @@ struct StoreStatusBanner: View {
             statusIcon
                 .accessibilityHidden(true)
 
-            Text(statusText)
+            Text(BioScanPaywallL10n.string(statusText))
                 .font(.caption.weight(.semibold))
 
             Spacer()
@@ -127,7 +127,7 @@ struct PaywallPrimaryButton: View {
                     ProgressView()
                         .tint(.white)
                 }
-                Text(title)
+                Text(BioScanPaywallL10n.string(title))
                     .font(.headline.weight(.bold))
             }
             .foregroundStyle(.white)
@@ -153,7 +153,7 @@ struct PaywallPrimaryButton: View {
         let price = store.productDetails(for: selected.id)?.localizedPrice
         return [configuration.copy.purchaseTitle, price]
             .compactMap { $0 }
-            .joined(separator: " · ")
+            .joined(separator: " - ")
     }
 
     private var isDisabled: Bool {
@@ -168,7 +168,7 @@ struct CreditBalanceBadge: View {
     let theme: BioScanTheme
 
     var body: some View {
-        Label(balanceText, systemImage: balance.hasUnlimitedAccess ? "infinity" : "sparkles")
+        Label(BioScanPaywallL10n.string(balanceText), systemImage: balance.hasUnlimitedAccess ? "infinity" : "sparkles")
             .font(.caption.weight(.bold))
             .foregroundStyle(theme.accent)
             .padding(.horizontal, 11)
@@ -179,6 +179,6 @@ struct CreditBalanceBadge: View {
     private var balanceText: String {
         balance.hasUnlimitedAccess
             ? "Unlimited access"
-            : "\(balance.total) recognitions left"
+            : String(format: BioScanPaywallL10n.string("%d recognitions left"), balance.total)
     }
 }

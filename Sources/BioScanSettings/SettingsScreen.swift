@@ -49,7 +49,7 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
     public var body: some View {
         SettingsPageView(
             title: configuration.copy.title,
-            versionText: "\(configuration.appName) · \(AppVersion().displayText)",
+            versionText: "\(configuration.appName) - \(AppVersion().displayText)",
             versionTapped: actions.versionTapped
         ) { metrics in
             VStack(alignment: .leading, spacing: 16) {
@@ -81,14 +81,14 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
                 ProgressView()
                     .padding(18)
                     .background(.regularMaterial, in: .rect(cornerRadius: 14))
-                    .accessibilityLabel("Restoring purchases")
+                    .accessibilityLabel(BioScanSettingsL10n.string("Restoring purchases"))
             }
         }
         .alert(item: $restoreAlert) { alert in
             Alert(
-                title: Text(alert.title),
-                message: Text(alert.message),
-                dismissButton: .default(Text("OK"))
+                title: Text(BioScanSettingsL10n.string(alert.title)),
+                message: Text(BioScanSettingsL10n.string(alert.message)),
+                dismissButton: .default(Text(BioScanSettingsL10n.string("OK")))
             )
         }
         .onAppear {
@@ -140,12 +140,12 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
 
     private var appearancePicker: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(configuration.copy.appearanceTitle)
+            Text(BioScanSettingsL10n.string(configuration.copy.appearanceTitle))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
 
             Picker(configuration.copy.appearanceTitle, selection: $appearanceID) {
                 ForEach(configuration.appearanceOptions) { option in
-                    Text(option.title)
+                    Text(BioScanSettingsL10n.string(option.title))
                         .tag(option.id)
                 }
             }
@@ -223,7 +223,7 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
                     icon: "arrow.clockwise",
                     title: configuration.copy.restorePurchaseTitle,
                     subtitle: isRestoring
-                        ? "Checking the App Store…"
+                        ? "Checking the App Store..."
                         : configuration.copy.restorePurchaseSubtitle,
                     isExternal: true,
                     theme: configuration.theme

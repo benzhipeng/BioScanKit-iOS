@@ -206,12 +206,12 @@ public struct ImageCropEditor: View {
                         .background(.black.opacity(0.42), in: Circle())
                 }
                 .foregroundStyle(.white)
-                .accessibilityLabel("Close crop editor")
+                .accessibilityLabel(BioScanCaptureL10n.string("Close crop editor"))
 
                 Spacer()
 
                 if configuration.allowsReset {
-                    Button("Reset") {
+                    Button(BioScanCaptureL10n.string("Reset")) {
                         reset(layout: layout)
                     }
                     .font(.subheadline.weight(.bold))
@@ -224,7 +224,7 @@ public struct ImageCropEditor: View {
             .padding(.horizontal, 20)
             .padding(.top, 10)
 
-            Label(configuration.guidanceText, systemImage: "scope")
+            Label(BioScanCaptureL10n.string(configuration.guidanceText), systemImage: "scope")
                 .font(.subheadline.weight(.bold))
                 .foregroundStyle(.white)
                 .padding(.horizontal, 14)
@@ -255,7 +255,7 @@ public struct ImageCropEditor: View {
                             )
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Close crop editor")
+                    .accessibilityLabel(BioScanCaptureL10n.string("Close crop editor"))
 
                     Spacer()
                     Color.clear.frame(width: 1, height: 1)
@@ -275,7 +275,7 @@ public struct ImageCropEditor: View {
                     }
                     .frame(width: 28, height: 28)
 
-                    Text(configuration.guidanceText)
+                    Text(BioScanCaptureL10n.string(configuration.guidanceText))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .multilineTextAlignment(.leading)
@@ -339,7 +339,7 @@ public struct ImageCropEditor: View {
             }
 
             HStack(spacing: 12) {
-                Button("Reset") {
+                Button(BioScanCaptureL10n.string("Reset")) {
                     reset(layout: layout)
                 }
                 .font(.system(size: 15, weight: .bold, design: .rounded))
@@ -354,7 +354,7 @@ public struct ImageCropEditor: View {
                 Button {
                     confirm(layout: layout, imageRect: imageRect)
                 } label: {
-                    Text(configuration.confirmTitle)
+                    Text(BioScanCaptureL10n.string(configuration.confirmTitle))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.black)
                         .frame(maxWidth: .infinity)
@@ -416,10 +416,10 @@ public struct ImageCropEditor: View {
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Crop preview")
+                Text(BioScanCaptureL10n.string("Crop preview"))
                     .font(.caption.weight(.bold))
                     .foregroundStyle(.white.opacity(0.72))
-                Text("Keep the subject clear and centered.")
+                Text(BioScanCaptureL10n.string("Keep the subject clear and centered."))
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.white)
             }
@@ -429,7 +429,7 @@ public struct ImageCropEditor: View {
             Button {
                 confirm(layout: layout, imageRect: imageRect)
             } label: {
-                Label(configuration.confirmTitle, systemImage: "sparkles")
+                Label(BioScanCaptureL10n.string(configuration.confirmTitle), systemImage: "sparkles")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .padding(.horizontal, 18)

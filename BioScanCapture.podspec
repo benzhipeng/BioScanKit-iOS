@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '18.0'
   s.swift_version = '5.9'
   s.source_files = 'Sources/BioScanCapture/**/*.swift'
+  s.resource_bundles = { 'BioScanCaptureResources' => ['Sources/BioScanCapture/Resources/**/*'] }
   s.frameworks = 'AVFoundation', 'CoreImage', 'ImageIO', 'PhotosUI', 'SwiftUI', 'UIKit'
   s.dependency 'BioScanDesign', s.version.to_s
 end

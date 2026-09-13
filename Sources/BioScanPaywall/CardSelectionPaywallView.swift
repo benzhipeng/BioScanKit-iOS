@@ -81,7 +81,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                         )
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Close")
+                .accessibilityLabel(BioScanPaywallL10n.string("Close"))
             }
             .padding(.horizontal, 14)
             .padding(.top, 14)
@@ -119,7 +119,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                 }
                 .padding(.top, 2)
 
-                Text(configuration.copy.title)
+                Text(BioScanPaywallL10n.string(configuration.copy.title))
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .foregroundStyle(headerTitle)
                     .multilineTextAlignment(.center)
@@ -127,7 +127,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                 balanceBadge
                     .padding(.top, 2)
 
-                Text(configuration.copy.subtitle)
+                Text(BioScanPaywallL10n.string(configuration.copy.subtitle))
                     .font(.system(size: 13.5, weight: .medium))
                     .foregroundStyle(headerSubtitle)
                     .multilineTextAlignment(.center)
@@ -197,7 +197,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                     .padding(.top, 2)
 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(product.title)
+                    Text(BioScanPaywallL10n.string(product.title))
                         .font(
                             .system(
                                 size: isLifetime ? 20 : 17,
@@ -209,7 +209,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                         .lineLimit(1)
                         .minimumScaleFactor(0.82)
 
-                    Text(product.subtitle)
+                    Text(BioScanPaywallL10n.string(product.subtitle))
                         .font(
                             .system(
                                 size: isLifetime ? 14 : 13,
@@ -254,13 +254,13 @@ struct CardSelectionPaywallView<Hero: View>: View {
                     if case .credits(let count) = product.kind,
                        let unitPrice = store.productDetails(for: product.id)?
                         .localizedUnitPrice(dividingBy: count) {
-                        Text(unitPrice + (product.unitSuffix ?? " each"))
+                        Text(unitPrice + BioScanPaywallL10n.string(product.unitSuffix ?? " each"))
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(tertiaryText(isLifetime: isLifetime))
                     }
 
                     if let footerText = product.footerText {
-                        Text(footerText)
+                        Text(BioScanPaywallL10n.string(footerText))
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(tertiaryText(isLifetime: isLifetime))
                     }
@@ -282,7 +282,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
             }
             .overlay(alignment: .topTrailing) {
                 if let badge = product.badge {
-                    Text(badge.uppercased())
+                    Text(BioScanPaywallL10n.string(badge).uppercased())
                         .font(.system(size: 9, weight: .bold, design: .rounded))
                         .foregroundStyle(
                             isLifetime ? heroTextPrimary : accentText
@@ -318,7 +318,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
         VStack(spacing: 14) {
             purchaseButton
 
-            Button(configuration.copy.restoreTitle) {
+            Button(BioScanPaywallL10n.string(configuration.copy.restoreTitle)) {
                 Task {
                     await store.restorePurchases()
                 }
@@ -349,7 +349,7 @@ struct CardSelectionPaywallView<Hero: View>: View {
                         .tint(.white)
                 }
 
-                Text(purchaseButtonTitle)
+                Text(BioScanPaywallL10n.string(purchaseButtonTitle))
                     .font(.system(size: 16, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
             }

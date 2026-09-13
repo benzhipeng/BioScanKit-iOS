@@ -51,7 +51,7 @@ public struct CameraScreen: View {
                 set: { _ in }
             )
         ) {
-            Button("OK", role: .cancel) {}
+            Button(BioScanCaptureL10n.string("OK"), role: .cancel) {}
         } message: {
             Text(camera.errorMessage ?? "")
         }
@@ -118,11 +118,11 @@ public struct CameraScreen: View {
                     .frame(width: 44, height: 44)
                     .background(.black.opacity(0.38), in: Circle())
             }
-            .accessibilityLabel("Close camera")
+            .accessibilityLabel(BioScanCaptureL10n.string("Close camera"))
 
             Spacer()
 
-            Text(configuration.title)
+            Text(BioScanCaptureL10n.string(configuration.title))
                 .font(.headline)
 
             Spacer()
@@ -135,7 +135,7 @@ public struct CameraScreen: View {
                         .frame(width: 44, height: 44)
                         .background(.black.opacity(0.38), in: Circle())
                 }
-                .accessibilityLabel(camera.flashEnabled ? "Turn flash off" : "Turn flash on")
+                .accessibilityLabel(BioScanCaptureL10n.string(camera.flashEnabled ? "Turn flash off" : "Turn flash on"))
             } else {
                 Color.clear.frame(width: 44, height: 44)
             }
@@ -153,7 +153,7 @@ public struct CameraScreen: View {
                 .aspectRatio(1, contentMode: .fit)
                 .shadow(color: configuration.theme.accent.opacity(0.35), radius: 8)
 
-            Text(configuration.instruction)
+            Text(BioScanCaptureL10n.string(configuration.instruction))
                 .font(.subheadline.weight(.bold))
                 .foregroundStyle(.white)
                 .padding(.horizontal, 14)
@@ -175,7 +175,7 @@ public struct CameraScreen: View {
                         .frame(width: 52, height: 52)
                         .background(.white.opacity(0.18), in: Circle())
                 }
-                .accessibilityLabel("Choose a photo")
+                .accessibilityLabel(BioScanCaptureL10n.string("Choose a photo"))
             } else {
                 Color.clear.frame(width: 52, height: 52)
             }
@@ -194,7 +194,7 @@ public struct CameraScreen: View {
                             .frame(width: 88, height: 88)
                     }
             }
-            .accessibilityLabel("Take photo")
+            .accessibilityLabel(BioScanCaptureL10n.string("Take photo"))
 
             Spacer()
 
@@ -203,7 +203,7 @@ public struct CameraScreen: View {
                 .foregroundStyle(.white)
                 .frame(width: 52, height: 52)
                 .background(.black.opacity(0.38), in: Circle())
-                .accessibilityLabel("Zoom \(String(format: "%.1f", camera.zoomFactor)) times")
+                .accessibilityLabel(String(format: BioScanCaptureL10n.string("Zoom %@ times"), String(format: "%.1f", camera.zoomFactor)))
         }
         .padding(.horizontal, 30)
         .padding(.bottom, 28)
@@ -220,16 +220,16 @@ public struct CameraScreen: View {
                 .foregroundStyle(configuration.theme.accent)
                 .accessibilityHidden(true)
 
-            Text(configuration.permissionTitle)
+            Text(BioScanCaptureL10n.string(configuration.permissionTitle))
                 .font(.title2.weight(.black))
                 .foregroundStyle(.white)
 
-            Text(isDenied ? configuration.deniedMessage : configuration.permissionMessage)
+            Text(BioScanCaptureL10n.string(isDenied ? configuration.deniedMessage : configuration.permissionMessage))
                 .font(.body)
                 .foregroundStyle(.white.opacity(0.76))
                 .multilineTextAlignment(.center)
 
-            Button(isDenied ? "Open Settings" : "Continue") {
+            Button(BioScanCaptureL10n.string(isDenied ? "Open Settings" : "Continue")) {
                 if isDenied {
                     guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                     openURL(url)
@@ -241,13 +241,13 @@ public struct CameraScreen: View {
             .tint(configuration.theme.accent)
 
             if configuration.supportsPhotoLibrary {
-                Button("Choose from Photos") {
+                Button(BioScanCaptureL10n.string("Choose from Photos")) {
                     showsPhotoPicker = true
                 }
                 .foregroundStyle(.white)
             }
 
-            Button("Cancel", action: onCancel)
+            Button(BioScanCaptureL10n.string("Cancel"), action: onCancel)
                 .foregroundStyle(.white.opacity(0.72))
         }
         .padding(28)

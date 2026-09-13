@@ -51,7 +51,7 @@ public struct SettingsCloudFavoritesSectionView: View {
             }
         }
         .confirmationDialog(
-            confirmation == .cloud ? "Delete saved items from iCloud?" : "Clear saved items on this device?",
+            BioScanSettingsL10n.string(confirmation == .cloud ? "Delete saved items from iCloud?" : "Clear saved items on this device?"),
             isPresented: Binding(
                 get: { confirmation != nil },
                 set: { if !$0 { confirmation = nil } }
@@ -59,19 +59,19 @@ public struct SettingsCloudFavoritesSectionView: View {
             titleVisibility: .visible
         ) {
             if confirmation == .cloud {
-                Button("Delete on All Devices", role: .destructive) {
+                Button(BioScanSettingsL10n.string("Delete on All Devices"), role: .destructive) {
                     controller.deleteFavoritesFromiCloud()
                 }
             } else {
-                Button("Clear on This Device", role: .destructive) {
+                Button(BioScanSettingsL10n.string("Clear on This Device"), role: .destructive) {
                     controller.clearFavoritesOnThisDevice()
                 }
             }
-            Button("Cancel", role: .cancel) {}
+            Button(BioScanSettingsL10n.string("Cancel"), role: .cancel) {}
         } message: {
-            Text(confirmation == .cloud
+            Text(BioScanSettingsL10n.string(confirmation == .cloud
                  ? "This removes synced items from iCloud and every device using this app."
-                 : "iCloud sync will be turned off. Saved items stored in iCloud will not be deleted.")
+                 : "iCloud sync will be turned off. Saved items stored in iCloud will not be deleted."))
         }
     }
 
@@ -85,7 +85,7 @@ public struct SettingsCloudFavoritesSectionView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 5) {
-                Text("Sync with iCloud")
+                Text(BioScanSettingsL10n.string("Sync with iCloud"))
                     .font(.system(size: 15, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(.primary)
 
@@ -97,15 +97,15 @@ public struct SettingsCloudFavoritesSectionView: View {
 
             Spacer(minLength: 8)
 
-            Toggle("Sync Saved Items with iCloud", isOn: Binding(
+            Toggle(BioScanSettingsL10n.string("Sync Saved Items with iCloud"), isOn: Binding(
                 get: { controller.isEnabled },
                 set: controller.setEnabled
             ))
             .labelsHidden()
             .tint(theme.accent)
-            .accessibilityLabel("Sync Saved Items with iCloud")
-            .accessibilityValue(controller.isEnabled ? "On" : "Off")
-            .accessibilityHint("Keeps saved items up to date across devices using the same iCloud account")
+            .accessibilityLabel(BioScanSettingsL10n.string("Sync Saved Items with iCloud"))
+            .accessibilityValue(BioScanSettingsL10n.string(controller.isEnabled ? "On" : "Off"))
+            .accessibilityHint(BioScanSettingsL10n.string("Keeps saved items up to date across devices using the same iCloud account"))
         }
         .padding(.vertical, 2)
     }
@@ -186,7 +186,7 @@ private struct CloudFavoritesStatusView: View {
                     .accessibilityHidden(true)
             }
 
-            Text(presentation.title)
+            Text(BioScanSettingsL10n.string(presentation.title))
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
@@ -200,8 +200,8 @@ private struct CloudFavoritesStatusView: View {
                         .background(presentation.tint.opacity(0.12), in: .rect(cornerRadius: 8))
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Retry iCloud Sync")
-                .help("Retry iCloud Sync")
+                .accessibilityLabel(BioScanSettingsL10n.string("Retry iCloud Sync"))
+                .help(BioScanSettingsL10n.string("Retry iCloud Sync"))
             }
         }
     }
@@ -228,11 +228,11 @@ private struct CloudFavoritesActionRow: View {
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(title)
+                    Text(BioScanSettingsL10n.string(title))
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundStyle(.primary)
 
-                    Text(subtitle)
+                    Text(BioScanSettingsL10n.string(subtitle))
                         .font(.system(size: 12, weight: .regular))
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)

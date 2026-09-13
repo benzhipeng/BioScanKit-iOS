@@ -73,9 +73,9 @@ private struct AdaptiveProcessingView: View {
                 }
 
                 VStack(spacing: 6) {
-                    Text(configuration.title)
+                    Text(BioScanCaptureL10n.string(configuration.title))
                         .font(.title2.weight(.black))
-                    Text(configuration.subtitle)
+                    Text(BioScanCaptureL10n.string(configuration.subtitle))
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.white.opacity(0.78))
                         .multilineTextAlignment(.center)
@@ -85,7 +85,9 @@ private struct AdaptiveProcessingView: View {
             .padding(28)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(configuration.title). \(configuration.subtitle)")
+        .accessibilityLabel(
+            "\(BioScanCaptureL10n.string(configuration.title)). \(BioScanCaptureL10n.string(configuration.subtitle))"
+        )
         .onAppear {
             guard !reduceMotion else { return }
             withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {
@@ -467,12 +469,12 @@ private struct ProcessingHeader: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
-                Text("AI SCAN")
+                Text(BioScanCaptureL10n.string("AI SCAN"))
                     .font(.system(size: 10, weight: .black, design: .rounded))
                     .tracking(2.4)
                     .foregroundStyle(accent)
 
-                Text(status)
+                Text(BioScanCaptureL10n.string(status))
                     .font(.system(size: 26, weight: .black, design: .rounded))
                     .foregroundStyle(primaryText)
                     .lineLimit(1)
@@ -560,7 +562,7 @@ private struct ProcessingWaitingPill: View {
                 .fill(accent.opacity(0.9))
                 .frame(width: 6, height: 6)
                 .scaleEffect(isActive ? 1.32 : 0.92)
-            Text("Processing")
+            Text(BioScanCaptureL10n.string("Processing"))
                 .font(.system(size: 11, weight: .black, design: .rounded))
                 .tracking(0.6)
         }

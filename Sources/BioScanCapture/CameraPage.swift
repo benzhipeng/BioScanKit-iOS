@@ -175,7 +175,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
             HStack {
                 if showsCloseButton {
                     circleButton(systemImage: "xmark", action: actions.close)
-                        .accessibilityLabel(configuration.closeAccessibilityLabel)
+                        .accessibilityLabel(BioScanCaptureL10n.string(configuration.closeAccessibilityLabel))
                 } else {
                     Color.clear.frame(width: 44, height: 44)
                 }
@@ -184,7 +184,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
 
                 if let showHelp = actions.showHelp {
                     circleButton(systemImage: "questionmark", action: showHelp)
-                        .accessibilityLabel(configuration.helpAccessibilityLabel)
+                        .accessibilityLabel(BioScanCaptureL10n.string(configuration.helpAccessibilityLabel))
                 } else {
                     Color.clear.frame(width: 44, height: 44)
                 }
@@ -194,7 +194,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
                 HStack(spacing: 6) {
                     Image(systemName: configuration.statusSystemImage)
                         .font(.system(size: 11, weight: .bold))
-                    Text(statusText)
+                    Text(BioScanCaptureL10n.string(statusText))
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.85)
@@ -248,7 +248,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
     }
 
     private var instructionPill: some View {
-        Text(isProcessing ? configuration.processingInstruction : configuration.instruction)
+        Text(BioScanCaptureL10n.string(isProcessing ? configuration.processingInstruction : configuration.instruction))
             .font(.system(size: 14, weight: .semibold, design: .rounded))
             .foregroundStyle(.white.opacity(0.9))
             .multilineTextAlignment(.center)
@@ -303,7 +303,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
         )
 
         return VStack(spacing: 12) {
-            Text(isProcessing ? configuration.processingInstruction : configuration.instruction)
+            Text(BioScanCaptureL10n.string(isProcessing ? configuration.processingInstruction : configuration.instruction))
                 .font(
                     .system(.subheadline, design: configuration.theme.fontDesign)
                         .weight(.semibold)
@@ -381,7 +381,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
                     }
                 }
                     .buttonStyle(.plain)
-                    .accessibilityLabel(configuration.galleryAccessibilityLabel)
+                    .accessibilityLabel(BioScanCaptureL10n.string(configuration.galleryAccessibilityLabel))
                     .disabled(isProcessing)
                     .opacity(
                         configuration.layoutStyle == .iNatureLegacy && isProcessing
@@ -420,7 +420,7 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
             .scaleEffect(
                 configuration.layoutStyle == .adaptive && isProcessing ? 0.92 : 1
             )
-            .accessibilityLabel(configuration.captureAccessibilityLabel)
+            .accessibilityLabel(BioScanCaptureL10n.string(configuration.captureAccessibilityLabel))
             .background {
                 GeometryReader { reader in
                     Color.clear.preference(

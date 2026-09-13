@@ -95,11 +95,11 @@ private struct StandardINaturePaywallView<Hero: View>: View {
         VStack(alignment: .leading, spacing: 12) {
             hero
 
-            Text(configuration.copy.title)
+            Text(BioScanPaywallL10n.string(configuration.copy.title))
                 .font(.largeTitle.weight(.black))
                 .foregroundStyle(configuration.theme.primaryText.resolve(for: colorScheme))
 
-            Text(configuration.copy.subtitle)
+            Text(BioScanPaywallL10n.string(configuration.copy.subtitle))
                 .font(.body.weight(.medium))
                 .foregroundStyle(configuration.theme.secondaryText.resolve(for: colorScheme))
 
@@ -133,10 +133,10 @@ private struct StandardINaturePaywallView<Hero: View>: View {
 
                         VStack(alignment: .leading, spacing: 5) {
                             HStack {
-                                Text(product.title)
+                                Text(BioScanPaywallL10n.string(product.title))
                                     .font(.title3.weight(.black))
                                 if let badge = product.badge {
-                                    Text(badge.uppercased())
+                                    Text(BioScanPaywallL10n.string(badge).uppercased())
                                         .font(.caption2.weight(.black))
                                         .foregroundStyle(configuration.theme.accent)
                                         .padding(.horizontal, 7)
@@ -148,7 +148,7 @@ private struct StandardINaturePaywallView<Hero: View>: View {
                                 }
                             }
 
-                            Text(product.subtitle)
+                            Text(BioScanPaywallL10n.string(product.subtitle))
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
 
@@ -216,9 +216,9 @@ private struct StandardINaturePaywallView<Hero: View>: View {
                     selectionIndicator(isSelected: store.selectedProductID == product.id)
                 }
 
-                Text(product.title)
+                Text(BioScanPaywallL10n.string(product.title))
                     .font(.headline)
-                Text(product.subtitle)
+                Text(BioScanPaywallL10n.string(product.subtitle))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 priceLine(for: product)
@@ -226,7 +226,7 @@ private struct StandardINaturePaywallView<Hero: View>: View {
                 if case .credits(let count) = product.kind,
                    let unitPrice = store.productDetails(for: product.id)?
                     .localizedUnitPrice(dividingBy: count) {
-                    Text("\(unitPrice) each")
+                    Text(String(format: BioScanPaywallL10n.string("%@ each"), unitPrice))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -258,7 +258,7 @@ private struct StandardINaturePaywallView<Hero: View>: View {
             sectionTitle(configuration.copy.assuranceTitle)
 
             ForEach(configuration.copy.assuranceItems, id: \.self) { item in
-                Label(item, systemImage: "checkmark.shield.fill")
+                Label(BioScanPaywallL10n.string(item), systemImage: "checkmark.shield.fill")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(configuration.theme.secondaryText.resolve(for: colorScheme))
             }
@@ -271,7 +271,7 @@ private struct StandardINaturePaywallView<Hero: View>: View {
     }
 
     private func sectionTitle(_ title: String) -> some View {
-        Text(title.uppercased())
+        Text(BioScanPaywallL10n.string(title).uppercased())
             .font(.caption.weight(.black))
             .tracking(0.9)
             .foregroundStyle(configuration.theme.secondaryText.resolve(for: colorScheme))

@@ -90,11 +90,11 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                     .frame(width: 42, height: 42, alignment: .leading)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("Close")
+            .accessibilityLabel(BioScanPaywallL10n.string("Close"))
 
             Spacer()
 
-            Button(configuration.copy.restoreTitle) {
+            Button(BioScanPaywallL10n.string(configuration.copy.restoreTitle)) {
                 Task {
                     await store.restorePurchases()
                 }
@@ -144,14 +144,14 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                     .foregroundStyle(isNatureEar ? purchaseAccent : configuration.theme.warning)
             }
 
-            Text(message)
+            Text(BioScanPaywallL10n.string(message))
                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                 .foregroundStyle(primaryText)
 
             Spacer()
 
             if showsRetry {
-                Button("Retry") {
+                Button(BioScanPaywallL10n.string("Retry")) {
                     Task {
                         await store.load()
                     }
@@ -175,20 +175,20 @@ struct LegacyINaturePaywallView<Hero: View>: View {
 
     private var heroSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(isNatureEar ? "Your nature field kit" : configuration.copy.title)
+            Text(BioScanPaywallL10n.string(isNatureEar ? "Your nature field kit" : configuration.copy.title))
                 .font(.system(size: 30, weight: .black, design: .rounded))
                 .foregroundStyle(primaryText)
                 .lineLimit(2)
 
             Text(
-                isNatureEar
+                BioScanPaywallL10n.string(isNatureEar
                     ? "Perfect for dawn walks, forest trails, and quick field checks"
-                    : configuration.copy.subtitle
+                    : configuration.copy.subtitle)
             )
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(brandAccent)
 
-            Text(isNatureEar ? "Pay once, for lifetime" : configuration.copy.assuranceTitle)
+            Text(BioScanPaywallL10n.string(isNatureEar ? "Pay once, for lifetime" : configuration.copy.assuranceTitle))
                 .font(.system(size: 18, weight: .black, design: .rounded))
                 .foregroundStyle(
                     isNatureEar
@@ -217,9 +217,9 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                 VStack(alignment: .leading, spacing: 18) {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Lifetime Pro")
+                            Text(BioScanPaywallL10n.string("Lifetime Pro"))
                                 .font(.system(size: 24, weight: .black, design: .rounded))
-                            Text(isNatureEar ? "Pay once, for lifetime" : "One-time purchase")
+                            Text(BioScanPaywallL10n.string(isNatureEar ? "Pay once, for lifetime" : "One-time purchase"))
                                 .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(brandAccent)
                         }
@@ -242,9 +242,9 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                             .frame(height: 10)
 
                         HStack {
-                            Text(isNatureEar ? "UNLIMITED FIELD USE" : "COST PER SCAN: $0.00")
+                            Text(BioScanPaywallL10n.string(isNatureEar ? "UNLIMITED FIELD USE" : "COST PER SCAN: $0.00"))
                             Spacer()
-                            Text(isNatureEar ? "BEST VALUE" : "INFINITE VALUE")
+                            Text(BioScanPaywallL10n.string(isNatureEar ? "BEST VALUE" : "INFINITE VALUE"))
                                 .foregroundStyle(brandAccent)
                         }
                         .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -273,7 +273,7 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                     y: 3
                 )
                 .overlay(alignment: .topTrailing) {
-                    Text("LIMITED OFFER")
+                    Text(BioScanPaywallL10n.string("LIMITED OFFER"))
                         .font(.system(size: 12, weight: .black, design: .rounded))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 14)
@@ -395,7 +395,7 @@ struct LegacyINaturePaywallView<Hero: View>: View {
             }
             .frame(width: 34, height: 34)
 
-            Text(text)
+            Text(BioScanPaywallL10n.string(text))
                 .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundStyle(primaryText)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -405,7 +405,7 @@ struct LegacyINaturePaywallView<Hero: View>: View {
 
     private var creditSection: some View {
         VStack(spacing: 12) {
-            Text("PAY ONLY FOR WHAT YOU USE")
+            Text(BioScanPaywallL10n.string("PAY ONLY FOR WHAT YOU USE"))
                 .font(.system(size: 13, weight: .black, design: .rounded))
                 .tracking(3)
                 .foregroundStyle(secondaryText)
@@ -440,7 +440,7 @@ struct LegacyINaturePaywallView<Hero: View>: View {
 
         return VStack(spacing: 10) {
             if isPopular {
-                Text("SAVE 25%")
+                Text(BioScanPaywallL10n.string("SAVE 25%"))
                     .font(.system(size: 10, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 10)
@@ -455,16 +455,16 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                     .padding(.bottom, -8)
             }
 
-            Text(isPopular ? "POPULAR" : "STARTER")
+            Text(BioScanPaywallL10n.string(isPopular ? "POPULAR" : "STARTER"))
                 .font(.system(size: 15, weight: .black, design: .rounded))
                 .foregroundStyle(secondaryText)
-            Text("\(count) \(creditUnit(for: product))")
+            Text(String(format: BioScanPaywallL10n.string("%d %@"), count, creditUnit(for: product)))
                 .font(.system(size: 20, weight: .black, design: .rounded))
                 .foregroundStyle(primaryText)
             Text(price(for: product, fallback: isPopular ? "$2.99" : "$0.99"))
                 .font(.system(size: 24, weight: .black, design: .rounded))
                 .foregroundStyle(purchaseAccent)
-            Text(unitPrice(for: product, count: count))
+            Text(BioScanPaywallL10n.string(unitPrice(for: product, count: count)))
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundStyle(secondaryText)
         }
@@ -503,7 +503,7 @@ struct LegacyINaturePaywallView<Hero: View>: View {
                         .tint(.white)
                 }
 
-                Text(bottomCTATitle)
+                Text(BioScanPaywallL10n.string(bottomCTATitle))
                     .font(.system(size: 18, weight: .black, design: .rounded))
 
                 if !isLifetimeMember && !store.isBusy {

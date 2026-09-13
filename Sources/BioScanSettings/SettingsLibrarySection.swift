@@ -80,7 +80,7 @@ public struct SettingsLibrarySectionView<HistoryDestination: View>: View {
                 Button {
                     showsClearConfirmation = true
                 } label: {
-                    Label(copy.clearHistoryTitle, systemImage: "trash.fill")
+                    Label(BioScanSettingsL10n.string(copy.clearHistoryTitle), systemImage: "trash.fill")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(.red)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -92,13 +92,13 @@ public struct SettingsLibrarySectionView<HistoryDestination: View>: View {
                 .opacity(isHistoryEmpty ? 0.5 : 1)
             }
         }
-        .confirmationDialog(copy.clearConfirmationTitle, isPresented: $showsClearConfirmation) {
-            Button(copy.clearActionTitle, role: .destructive) {
+        .confirmationDialog(BioScanSettingsL10n.string(copy.clearConfirmationTitle), isPresented: $showsClearConfirmation) {
+            Button(BioScanSettingsL10n.string(copy.clearActionTitle), role: .destructive) {
                 clearHistory?()
             }
-            Button("Cancel", role: .cancel) {}
+            Button(BioScanSettingsL10n.string("Cancel"), role: .cancel) {}
         } message: {
-            Text(copy.clearConfirmationMessage)
+            Text(BioScanSettingsL10n.string(copy.clearConfirmationMessage))
         }
     }
 }

@@ -35,7 +35,7 @@ public struct SettingsSectionTitleView: View {
     }
 
     public var body: some View {
-        Text(title.uppercased())
+        Text(BioScanSettingsL10n.string(title).uppercased())
             .font(.system(size: 12, weight: .bold, design: .rounded))
             .foregroundStyle(.secondary)
     }
@@ -149,7 +149,7 @@ public struct SettingsRowLabelView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Text(BioScanSettingsL10n.string(title))
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(
                         usesThemeTextColors
@@ -158,7 +158,7 @@ public struct SettingsRowLabelView: View {
                     )
 
                 if let subtitle {
-                    Text(subtitle)
+                    Text(BioScanSettingsL10n.string(subtitle))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(
                             usesThemeTextColors
@@ -171,7 +171,7 @@ public struct SettingsRowLabelView: View {
             Spacer()
 
             if let detail {
-                Text(detail)
+                Text(BioScanSettingsL10n.string(detail))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundStyle(
                         usesThemeTextColors
@@ -321,9 +321,9 @@ public struct SettingsMembershipCardView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
+                Text(BioScanSettingsL10n.string(title))
                     .font(.system(size: 14, weight: .black, design: .rounded))
-                Text(subtitle)
+                Text(BioScanSettingsL10n.string(subtitle))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -340,13 +340,13 @@ public struct SettingsMembershipCardView: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             if let remainingText, !remainingText.isEmpty {
-                Text(remainingText)
+                Text(BioScanSettingsL10n.string(remainingText))
                     .font(.system(size: 13, weight: .bold, design: .rounded))
             }
 
             if let action {
                 Button(action: action) {
-                    Text(actionTitle)
+                    Text(BioScanSettingsL10n.string(actionTitle))
                         .font(.system(size: 13, weight: .black, design: .rounded))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 12)
@@ -358,7 +358,7 @@ public struct SettingsMembershipCardView: View {
                 .opacity(isActionDisabled ? 0.6 : 1)
             }
 
-            Text(footnote)
+            Text(BioScanSettingsL10n.string(footnote))
                 .font(.system(size: 11, weight: .bold, design: .rounded))
                 .foregroundStyle(theme.accent)
         }
@@ -398,7 +398,7 @@ public struct SettingsRecommendedAppCardView: View {
                 .frame(width: 78, height: 78)
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("RECOMMENDED")
+                    Text(BioScanSettingsL10n.string("RECOMMENDED"))
                         .font(.system(size: 11, weight: .black, design: .rounded))
                         .tracking(1.1)
                         .foregroundStyle(Color.white.opacity(0.68))
@@ -419,7 +419,7 @@ public struct SettingsRecommendedAppCardView: View {
                     .accessibilityHidden(true)
             }
 
-            Text(app.subtitle)
+            Text(BioScanSettingsL10n.string(app.subtitle))
                 .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundStyle(Color.white.opacity(0.84))
                 .lineSpacing(4)
@@ -453,8 +453,8 @@ public struct SettingsRecommendedAppCardView: View {
         .shadow(color: primaryAccent.opacity(0.22), radius: 18, x: 0, y: 12)
         .contentShape(.rect(cornerRadius: 24))
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(app.name), \(app.subtitle)")
-        .accessibilityHint("Opens in the App Store")
+        .accessibilityLabel("\(app.name), \(BioScanSettingsL10n.string(app.subtitle))")
+        .accessibilityHint(BioScanSettingsL10n.string("Opens in the App Store"))
     }
 
     private var accentColors: [Color] {

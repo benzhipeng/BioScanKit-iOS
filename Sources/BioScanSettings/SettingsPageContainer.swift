@@ -142,7 +142,7 @@ public struct SettingsPageView<Content: View>: View {
                             }
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Back")
+                    .accessibilityLabel(BioScanSettingsL10n.string("Back"))
                 }
             }
         }
