@@ -445,9 +445,9 @@ public struct CameraPage<Preview: View, ExtraOverlay: View>: View {
                         : 1
                 )
                 .accessibilityLabel(
-                    flashEnabled
+                    BioScanCaptureL10n.string(flashEnabled
                         ? configuration.flashOnAccessibilityLabel
-                        : configuration.flashOffAccessibilityLabel
+                        : configuration.flashOffAccessibilityLabel)
                 )
             } else {
                 Color.clear.frame(width: sideControlSize, height: sideControlSize)

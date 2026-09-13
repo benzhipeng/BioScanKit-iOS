@@ -45,7 +45,7 @@ public struct CameraScreen: View {
             }
         }
         .alert(
-            "Camera Error",
+            BioScanCaptureL10n.string("Camera Error"),
             isPresented: Binding(
                 get: { camera.errorMessage != nil },
                 set: { _ in }
@@ -53,7 +53,7 @@ public struct CameraScreen: View {
         ) {
             Button(BioScanCaptureL10n.string("OK"), role: .cancel) {}
         } message: {
-            Text(camera.errorMessage ?? "")
+            Text(BioScanCaptureL10n.string(camera.errorMessage ?? ""))
         }
         .onAppear {
             camera.refreshPermission()

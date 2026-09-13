@@ -152,7 +152,7 @@ private struct LegacyINatureProcessingView: View {
             let availableWidth = max(layoutWidth - horizontalPadding * 2, 260)
             let width = min(availableWidth, 390)
             let cardHeight = min(max(width * 1.08, 330), layoutHeight * 0.54)
-            let status = statuses[min(statusIndex, statuses.count - 1)]
+            let status = BioScanCaptureL10n.string(statuses[min(statusIndex, statuses.count - 1)])
 
             ZStack {
                 background
