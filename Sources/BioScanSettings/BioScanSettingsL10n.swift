@@ -2,7 +2,11 @@ import Foundation
 
 enum BioScanSettingsL10n {
     static func string(_ key: String) -> String {
-        NSLocalizedString(key, bundle: bundle, value: key, comment: "")
+        let componentValue = NSLocalizedString(key, bundle: bundle, value: key, comment: "")
+        if componentValue != key {
+            return componentValue
+        }
+        return NSLocalizedString(key, bundle: .main, value: key, comment: "")
     }
 
     private static let bundle: Bundle = {
