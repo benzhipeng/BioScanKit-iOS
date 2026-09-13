@@ -143,7 +143,7 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
             Text(BioScanSettingsL10n.string(configuration.copy.appearanceTitle))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
 
-            Picker(configuration.copy.appearanceTitle, selection: $appearanceID) {
+            Picker(BioScanSettingsL10n.string(configuration.copy.appearanceTitle), selection: $appearanceID) {
                 ForEach(configuration.appearanceOptions) { option in
                     Text(BioScanSettingsL10n.string(option.title))
                         .tag(option.id)
@@ -287,7 +287,9 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
         RecommendedAppsLoader.load(
             resourceName: configuration.recommendedAppsResourceName,
             bundle: recommendationsBundle,
-            excluding: configuration.currentAppID
+            excluding: configuration.currentAppID,
+            preferredLanguages: configuration.recommendedAppsPreferredLanguages
+                ?? RecommendedAppsLoader.mainAppPreferredLanguages()
         )
     }
 

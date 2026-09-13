@@ -108,9 +108,14 @@ public enum RecommendedAppsLoader {
     public static func load(
         resourceName: String = "RecommendedApps",
         bundle: Bundle = .main,
-        excluding currentAppID: String
+        excluding currentAppID: String,
+        preferredLanguages: [String] = mainAppPreferredLanguages()
     ) -> [RecommendedApp] {
-        guard let url = bundle.url(forResource: resourceName, withExtension: "json"),
+        guard let url = localizedResourceURL(
+            resourceName: resourceName,
+            bundle: bundle,
+            preferredLanguages: preferredLanguages
+        ),
               let data = try? Data(contentsOf: url),
               let document = try? JSONDecoder().decode(RecommendedAppsDocument.self, from: data) else {
             return []
@@ -119,5 +124,57 @@ public enum RecommendedAppsLoader {
         return document.apps.filter {
             $0.isEnabled && $0.id.caseInsensitiveCompare(currentAppID) != .orderedSame
         }
+    }
+
+    public static func mainAppPreferredLanguages() -> [String] {
+        var languages = Bundle.main.preferredLocalizations.filter {
+            !$0.isEmpty && $0 != "Base"
+        }
+        for language in Locale.preferredLanguages where !languages.contains(language) {
+            languages.append(language)
+        }
+        return languages
+    }
+
+    static func localizedResourceNames(
+        resourceName: String,
+        preferredLanguages: [String]
+    ) -> [String] {
+        var names: [String] = []
+        for language in preferredLanguages {
+            let normalized = language.replacingOccurrences(of: "_", with: "-")
+            appendUnique("\(resourceName).\(normalized)", to: &names)
+
+            if normalized.hasPrefix("zh-Hans") {
+                appendUnique("\(resourceName).zh-Hans", to: &names)
+                appendUnique("\(resourceName).zh", to: &names)
+            } else if normalized.hasPrefix("zh-Hant") {
+                appendUnique("\(resourceName).zh-Hant", to: &names)
+                appendUnique("\(resourceName).zh", to: &names)
+            } else if let languageCode = normalized.split(separator: "-").first {
+                appendUnique("\(resourceName).\(languageCode)", to: &names)
+            }
+        }
+        appendUnique(resourceName, to: &names)
+        return names
+    }
+
+    private static func localizedResourceURL(
+        resourceName: String,
+        bundle: Bundle,
+        preferredLanguages: [String]
+    ) -> URL? {
+        localizedResourceNames(
+            resourceName: resourceName,
+            preferredLanguages: preferredLanguages
+        )
+        .lazy
+        .compactMap { bundle.url(forResource: $0, withExtension: "json") }
+        .first
+    }
+
+    private static func appendUnique(_ value: String, to values: inout [String]) {
+        guard !values.contains(value) else { return }
+        values.append(value)
     }
 }

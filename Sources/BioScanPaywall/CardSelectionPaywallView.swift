@@ -412,7 +412,19 @@ struct CardSelectionPaywallView<Hero: View>: View {
         guard let selectedProduct = store.selectedProduct else {
             return configuration.copy.purchaseTitle
         }
-        let actionTitle = selectedProduct.purchaseActionTitle
+        let actionTitle: String
+        switch selectedProduct.kind {
+        case .credits:
+            actionTitle = String(
+                format: BioScanPaywallL10n.string("Get %@"),
+                BioScanPaywallL10n.string(selectedProduct.title)
+            )
+        case .lifetime:
+            actionTitle = String(
+                format: BioScanPaywallL10n.string("Unlock %@"),
+                BioScanPaywallL10n.string(selectedProduct.title)
+            )
+        }
         guard let price = store.productDetails(for: selectedProduct.id)?.localizedPrice else {
             return actionTitle
         }
@@ -428,7 +440,10 @@ struct CardSelectionPaywallView<Hero: View>: View {
     private var balanceText: String {
         store.creditBalance.hasUnlimitedAccess
             ? configuration.copy.activeLifetimeTitle
-            : "\(store.creditBalance.total) scans left"
+            : String(
+                format: BioScanPaywallL10n.string("%d scans left"),
+                store.creditBalance.total
+            )
     }
 
     private func selectionRing(

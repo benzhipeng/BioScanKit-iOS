@@ -10,8 +10,10 @@ public final class RecognitionAccessController {
 
         public var errorDescription: String? {
             switch self {
-            case .noCredits: return "No identifications remaining."
-            case .busy: return "An identification is already in progress."
+            case .noCredits:
+                return BioScanPaywallL10n.string("No identifications remaining.")
+            case .busy:
+                return BioScanPaywallL10n.string("An identification is already in progress.")
             }
         }
     }

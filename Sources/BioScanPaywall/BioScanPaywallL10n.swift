@@ -1,8 +1,9 @@
 import Foundation
+import BioScanDesign
 
 enum BioScanPaywallL10n {
     static func string(_ key: String) -> String {
-        NSLocalizedString(key, bundle: bundle, value: key, comment: "")
+        BioScanLocalization.shared.string(key, bundle: bundle)
     }
 
     private static let bundle: Bundle = {

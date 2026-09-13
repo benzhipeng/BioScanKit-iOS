@@ -121,7 +121,7 @@ public struct SettingsPageView<Content: View>: View {
             versionTapped: versionTapped,
             content: content
         )
-        .bioScanPushNavigation(title: title)
+        .bioScanPushNavigation(title: BioScanSettingsL10n.string(title))
         .navigationBarBackButtonHidden(backAction != nil)
         .toolbar {
             if let backAction {

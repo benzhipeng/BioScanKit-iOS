@@ -550,7 +550,12 @@ struct LegacyINaturePaywallView<Hero: View>: View {
         case .lifetime:
             return isNatureEar ? "Pay once, for lifetime" : "Pay once, enjoy forever"
         case .credits(let count):
-            return "Buy \(count) \(creditUnit(for: product)) for \(price(for: product, fallback: count == 20 ? "$2.99" : "$0.99"))"
+            return String(
+                format: BioScanPaywallL10n.string("Buy %d %@ for %@"),
+                count,
+                BioScanPaywallL10n.string(creditUnit(for: product)),
+                price(for: product, fallback: count == 20 ? "$2.99" : "$0.99")
+            )
         }
     }
 
@@ -620,9 +625,17 @@ struct LegacyINaturePaywallView<Hero: View>: View {
             ?? (isNatureEar ? "per ID" : "per scan")
         if let localized = store.productDetails(for: product.id)?
             .localizedUnitPrice(dividingBy: count) {
-            return "\(localized) \(unitFooter)"
+            return String(
+                format: BioScanPaywallL10n.string("%@ %@"),
+                localized,
+                BioScanPaywallL10n.string(unitFooter)
+            )
         }
-        return "\(count == 20 ? "$0.15" : "$0.20") \(unitFooter)"
+        return String(
+            format: BioScanPaywallL10n.string("%@ %@"),
+            count == 20 ? "$0.15" : "$0.20",
+            BioScanPaywallL10n.string(unitFooter)
+        )
     }
 
     private func creditUnit(for product: PaywallProduct) -> String {

@@ -134,7 +134,10 @@ public struct SettingsCloudFavoritesSectionView: View {
             )
         case .synced(let date):
             return CloudFavoritesStatusPresentation(
-                title: "Up to date \(date.formatted(englishDateStyle))",
+                title: String(
+                    format: BioScanSettingsL10n.string("Up to date %@"),
+                    date.formatted(localizedDateStyle)
+                ),
                 icon: "checkmark.circle.fill",
                 tint: theme.success
             )
@@ -154,9 +157,9 @@ public struct SettingsCloudFavoritesSectionView: View {
         }
     }
 
-    private var englishDateStyle: Date.FormatStyle {
+    private var localizedDateStyle: Date.FormatStyle {
         Date.FormatStyle(date: .abbreviated, time: .shortened)
-            .locale(Locale(identifier: "en_US"))
+            .locale(.autoupdatingCurrent)
     }
 }
 

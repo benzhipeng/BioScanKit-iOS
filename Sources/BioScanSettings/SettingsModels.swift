@@ -84,10 +84,10 @@ public struct SettingsCopy: Sendable {
             termsOfUseTitle: "User Agreement",
             termsOfUseSubtitle: "Terms of use and responsibilities",
             feedbackTitle: "Contact & Feedback",
-            feedbackSubtitle: "Help us improve \(appName)",
+            feedbackSubtitle: String(format: BioScanSettingsL10n.string("Help us improve %@"), appName),
             restorePurchaseTitle: "Restore Purchase",
             restorePurchaseSubtitle: "Recover access on this device",
-            rateAppTitle: "Rate \(appName)",
+            rateAppTitle: String(format: BioScanSettingsL10n.string("Rate %@"), appName),
             rateAppSubtitle: "Leave a rating on the App Store"
         )
     }
@@ -129,6 +129,7 @@ public struct SettingsConfiguration: Sendable {
     public let showsRateApp: Bool
     public let showsRecommendedApps: Bool
     public let recommendedAppsResourceName: String
+    public let recommendedAppsPreferredLanguages: [String]?
 
     public init(
         appName: String,
@@ -147,7 +148,8 @@ public struct SettingsConfiguration: Sendable {
         showsRestorePurchase: Bool = true,
         showsRateApp: Bool = true,
         showsRecommendedApps: Bool = true,
-        recommendedAppsResourceName: String = "RecommendedApps"
+        recommendedAppsResourceName: String = "RecommendedApps",
+        recommendedAppsPreferredLanguages: [String]? = nil
     ) {
         self.appName = appName
         self.currentAppID = currentAppID
@@ -166,6 +168,7 @@ public struct SettingsConfiguration: Sendable {
         self.showsRateApp = showsRateApp
         self.showsRecommendedApps = showsRecommendedApps
         self.recommendedAppsResourceName = recommendedAppsResourceName
+        self.recommendedAppsPreferredLanguages = recommendedAppsPreferredLanguages
     }
 }
 

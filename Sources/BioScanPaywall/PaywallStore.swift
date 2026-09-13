@@ -5,7 +5,7 @@ private enum PaywallStoreError: LocalizedError {
     case creditDeliveryUnconfirmed
 
     var errorDescription: String? {
-        "The purchase completed, but its scan credits could not be confirmed. Please contact support before purchasing again."
+        BioScanPaywallL10n.string("The purchase completed, but its scan credits could not be confirmed. Please contact support before purchasing again.")
     }
 }
 

@@ -1,12 +1,9 @@
 import Foundation
+import BioScanDesign
 
 enum BioScanSettingsL10n {
     static func string(_ key: String) -> String {
-        let componentValue = NSLocalizedString(key, bundle: bundle, value: key, comment: "")
-        if componentValue != key {
-            return componentValue
-        }
-        return NSLocalizedString(key, bundle: .main, value: key, comment: "")
+        BioScanLocalization.shared.string(key, bundle: bundle)
     }
 
     private static let bundle: Bundle = {

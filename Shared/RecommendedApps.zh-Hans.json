@@ -1,0 +1,40 @@
+{
+  "apps": [
+    {
+      "id": "inature",
+      "title": "iNature",
+      "description": "通过照片识别植物、昆虫和野生动物",
+      "imageName": "iNatureShareAppLogo",
+      "backgroundColors": ["#55A957", "#79C764", "#2F7E50"],
+      "appStoreURL": "https://apps.apple.com/app/id6759235508",
+      "fallbackMessage": "Please search iNature in the App Store."
+    },
+    {
+      "id": "mrrock",
+      "title": "MrRock: Kids Stone Identifier",
+      "description": "为小小探索者和家庭冒险准备的石头识别",
+      "imageName": "MrRockShareAppLogo",
+      "backgroundColors": ["#169EAD", "#5DD6C7", "#F4B737"],
+      "appStoreURL": "https://apps.apple.com/us/app/mrrock-kids-stone-identifier/id6762290966",
+      "fallbackMessage": "Please search MrRock Kids Stone Identifier in the App Store."
+    },
+    {
+      "id": "natureear",
+      "title": "NatureEar: Offline Sound ID",
+      "description": "离线野生动物声音识别，适合散步、徒步和观鸟",
+      "imageName": "BirdShareAppLogo",
+      "backgroundColors": ["#F28A1A", "#FFC34A", "#C96512"],
+      "appStoreURL": "https://apps.apple.com/cn/app/id6788026814",
+      "fallbackMessage": "Please search NatureEar Offline Sound ID in the App Store."
+    },
+    {
+      "id": "mushroom",
+      "title": "Mr.Mushroom",
+      "description": "蘑菇识别，包含本地详情和安全提示",
+      "imageName": "MushroomShareAppLogo",
+      "backgroundColors": ["#F15A24", "#FFB347", "#5FA846"],
+      "appStoreURL": "https://apps.apple.com/app/id6791078589",
+      "fallbackMessage": "Please search Mr.Mushroom in the App Store."
+    }
+  ]
+}

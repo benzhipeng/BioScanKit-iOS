@@ -103,7 +103,7 @@ public struct SettingsRowView: View {
             )
         }
         .buttonStyle(.plain)
-        .accessibilityHint(isExternal ? "Opens an external destination" : "")
+        .accessibilityHint(isExternal ? BioScanSettingsL10n.string("Opens an external destination") : "")
     }
 }
 
@@ -419,7 +419,7 @@ public struct SettingsRecommendedAppCardView: View {
                     .accessibilityHidden(true)
             }
 
-            Text(BioScanSettingsL10n.string(app.subtitle))
+            Text(app.subtitle)
                 .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundStyle(Color.white.opacity(0.84))
                 .lineSpacing(4)
@@ -453,7 +453,13 @@ public struct SettingsRecommendedAppCardView: View {
         .shadow(color: primaryAccent.opacity(0.22), radius: 18, x: 0, y: 12)
         .contentShape(.rect(cornerRadius: 24))
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(app.name), \(BioScanSettingsL10n.string(app.subtitle))")
+        .accessibilityLabel(
+            String(
+                format: BioScanSettingsL10n.string("%@, %@"),
+                app.name,
+                app.subtitle
+            )
+        )
         .accessibilityHint(BioScanSettingsL10n.string("Opens in the App Store"))
     }
 

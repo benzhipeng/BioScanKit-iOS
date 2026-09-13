@@ -6,7 +6,11 @@ shared_dir="$(dirname "$script_dir")/Shared"
 resources_dir="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 
 mkdir -p "$resources_dir"
-cp "$shared_dir/RecommendedApps.json" "$resources_dir/RecommendedApps.json"
+
+for recommendations in "$shared_dir"/RecommendedApps*.json; do
+  [ -e "$recommendations" ] || continue
+  cp "$recommendations" "$resources_dir/$(basename "$recommendations")"
+done
 
 for icon in "$shared_dir"/Icons/*.png; do
   [ -e "$icon" ] || continue

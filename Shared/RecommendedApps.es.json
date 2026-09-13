@@ -1,0 +1,40 @@
+{
+  "apps": [
+    {
+      "id": "inature",
+      "title": "iNature",
+      "description": "Identifica plantas, insectos y fauna silvestre a partir de fotos",
+      "imageName": "iNatureShareAppLogo",
+      "backgroundColors": ["#55A957", "#79C764", "#2F7E50"],
+      "appStoreURL": "https://apps.apple.com/app/id6759235508",
+      "fallbackMessage": "Please search iNature in the App Store."
+    },
+    {
+      "id": "mrrock",
+      "title": "MrRock: Kids Stone Identifier",
+      "description": "Identificacion de piedras para pequenos exploradores y aventuras familiares",
+      "imageName": "MrRockShareAppLogo",
+      "backgroundColors": ["#169EAD", "#5DD6C7", "#F4B737"],
+      "appStoreURL": "https://apps.apple.com/us/app/mrrock-kids-stone-identifier/id6762290966",
+      "fallbackMessage": "Please search MrRock Kids Stone Identifier in the App Store."
+    },
+    {
+      "id": "natureear",
+      "title": "NatureEar: Offline Sound ID",
+      "description": "Identificacion offline de sonidos de fauna para paseos, senderismo y observacion de aves",
+      "imageName": "BirdShareAppLogo",
+      "backgroundColors": ["#F28A1A", "#FFC34A", "#C96512"],
+      "appStoreURL": "https://apps.apple.com/cn/app/id6788026814",
+      "fallbackMessage": "Please search NatureEar Offline Sound ID in the App Store."
+    },
+    {
+      "id": "mushroom",
+      "title": "Mr.Mushroom",
+      "description": "Reconocimiento de setas con detalles locales y notas de seguridad",
+      "imageName": "MushroomShareAppLogo",
+      "backgroundColors": ["#F15A24", "#FFB347", "#5FA846"],
+      "appStoreURL": "https://apps.apple.com/app/id6791078589",
+      "fallbackMessage": "Please search Mr.Mushroom in the App Store."
+    }
+  ]
+}
