@@ -5,7 +5,8 @@
 "%d free identifications" = "無料識別 %d回";
 "%d recognitions left" = "残り%d回の識別";
 "%d scans left" = "残り%d回のスキャン";
-"All yours — no subscription hassle!" = "すべて利用可能 — サブスクリプションは不要です！";
+"RESTORE" = "復元";
+"All yours — no subscription hassle!" = "すべて使えて、サブスク不要！";
 "An identification is already in progress." = "すでに識別を実行中です。";
 "BEST VALUE" = "最もお得";
 "Buy %d %@ for %@" = "%d %@を%@で購入";
@@ -59,7 +60,7 @@
 "Secure purchase through the App Store" = "App Store 経由の安全な購入";
 "Retry" = "再試行";
 "SAVE 25%" = "25% お得";
-"Scans" = "スキャン";
+"Scans" = "回のスキャン";
 "STARTER" = "スターター";
 "The purchase completed, but its scan credits could not be confirmed. Please contact support before purchasing again." = "購入は完了しましたが、スキャンクレジットを確認できませんでした。再度購入する前にサポートへお問い合わせください。";
 "UNLIMITED FIELD USE" = "フィールドで無制限に利用";

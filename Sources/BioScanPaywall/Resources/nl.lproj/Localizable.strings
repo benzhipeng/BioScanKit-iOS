@@ -5,6 +5,7 @@
 "%d free identifications" = "%d gratis identificaties";
 "%d recognitions left" = "%d herkenningen resterend";
 "%d scans left" = "%d scans resterend";
+"RESTORE" = "HERSTELLEN";
 "All yours — no subscription hassle!" = "Helemaal van jou — zonder abonnement!";
 "An identification is already in progress." = "Er wordt al een identificatie uitgevoerd.";
 "BEST VALUE" = "BESTE WAARDE";
@@ -19,7 +20,7 @@
 "COST PER SCAN: $0.00" = "KOSTEN PER SCAN: $0.00";
 "Expert-verified reports" = "Door experts geverifieerde rapporten";
 "Future Pro improvements included" = "Toekomstige Pro-verbeteringen inbegrepen";
-"Get %@" = "%@ downloaden";
+"Get %@" = "%@ ontvangen";
 "Identify More. Explore Forever." = "Identificeer meer. Blijf ontdekken.";
 "INFINITE VALUE" = "ONEINDIGE WAARDE";
 "Instant AI recognition" = "Directe AI-herkenning";
@@ -39,10 +40,10 @@
 "OK" = "OK";
 "One-time purchase" = "Eenmalige aankoop";
 "One-time purchases" = "Eenmalige aankopen";
-"Pay once, enjoy forever" = "Eenmalig betalen, altijd gebruiken";
+"Pay once, enjoy forever" = "Eenmalig betalen, voor altijd";
 "Pay once, for lifetime" = "Eenmalig betalen, levenslang gebruiken";
 "Pay once for lifetime access, or add recognition credits whenever you need them." = "Betaal eenmaal voor levenslange toegang of voeg herkenningscredits toe wanneer je ze nodig hebt.";
-"PAY ONLY FOR WHAT YOU USE" = "BETAAL ALLEEN VOOR WAT JE GEBRUIKT";
+"PAY ONLY FOR WHAT YOU USE" = "BETAAL NAAR GEBRUIK";
 "Perfect for dawn walks, forest trails, and quick field checks" = "Perfect voor vroege wandelingen, bospaden en snelle controles in het veld";
 "Perfect for hikes, camping, and travel without signal" = "Perfect voor wandelen, kamperen en reizen zonder bereik";
 "POPULAR" = "POPULAIR";

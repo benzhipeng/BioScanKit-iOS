@@ -5,10 +5,11 @@
 "%d free identifications" = "%d 次免费识别";
 "%d recognitions left" = "剩余 %d 次识别";
 "%d scans left" = "剩余 %d 次扫描";
+"RESTORE" = "恢复购买";
 "All yours — no subscription hassle!" = "全部归你，无需订阅！";
 "An identification is already in progress." = "已有识别任务正在进行。";
 "BEST VALUE" = "最超值";
-"Buy %d %@ for %@" = "购买 %d %@，价格 %@";
+"Buy %d %@ for %@" = "购买 %d %@：%@";
 "Claim %d" = "领取 %d";
 "Close" = "关闭";
 "Completing your purchase…" = "正在完成购买…";
@@ -59,7 +60,7 @@
 "Secure purchase through the App Store" = "通过 App Store 安全购买";
 "Retry" = "重试";
 "SAVE 25%" = "节省 25%";
-"Scans" = "扫描次数";
+"Scans" = "次扫描";
 "STARTER" = "入门";
 "The purchase completed, but its scan credits could not be confirmed. Please contact support before purchasing again." = "购买已完成，但无法确认扫描次数。再次购买前请联系支持人员。";
 "UNLIMITED FIELD USE" = "无限次野外使用";

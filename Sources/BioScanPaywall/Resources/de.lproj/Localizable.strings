@@ -5,6 +5,7 @@
 "%d free identifications" = "%d kostenlose Identifizierungen";
 "%d recognitions left" = "%d Erkennungen verbleibend";
 "%d scans left" = "%d Scans verbleibend";
+"RESTORE" = "WIEDERHERSTELLEN";
 "All yours — no subscription hassle!" = "Alles für dich – ganz ohne Abo.";
 "An identification is already in progress." = "Eine Identifizierung läuft bereits.";
 "BEST VALUE" = "BESTES ANGEBOT";
@@ -39,7 +40,7 @@
 "OK" = "OK";
 "One-time purchase" = "Einmaliger Kauf";
 "One-time purchases" = "Einmalige Käufe";
-"Pay once, enjoy forever" = "Einmal zahlen, dauerhaft nutzen";
+"Pay once, enjoy forever" = "Einmal zahlen, immer nutzen";
 "Pay once, for lifetime" = "Einmal zahlen, lebenslang nutzen";
 "Pay once for lifetime access, or add recognition credits whenever you need them." = "Zahle einmal für lebenslangen Zugriff oder kaufe bei Bedarf zusätzliche Erkennungs-Credits.";
 "PAY ONLY FOR WHAT YOU USE" = "ZAHL NUR, WAS DU NUTZT";

@@ -35,6 +35,24 @@
       "backgroundColors": ["#F15A24", "#FFB347", "#5FA846"],
       "appStoreURL": "https://apps.apple.com/app/id6791078589",
       "fallbackMessage": "Please search Mr.Mushroom in the App Store."
+    },
+    {
+      "id": "mrbird",
+      "title": "Mr.Bird",
+      "description": "Identification hors ligne des oiseaux et guide de terrain a partir de photos",
+      "imageName": "MrBirdShareAppLogo",
+      "backgroundColors": ["#2FB7C6", "#7AE0D6", "#1A7E89"],
+      "appStoreURL": "https://apps.apple.com/app/id6804188326",
+      "fallbackMessage": "Please search Mr.Bird in the App Store."
+    },
+    {
+      "id": "fish",
+      "title": "Mr.Fish",
+      "description": "Identifiez les poissons a partir de photos et consultez des details utiles",
+      "imageName": "FishShareAppLogo",
+      "backgroundColors": ["#1E8ED8", "#6EC6FF", "#0E5F9A"],
+      "appStoreURL": "https://apps.apple.com/app/id6794375095",
+      "fallbackMessage": "Please search Mr.Fish in the App Store."
     }
   ]
 }

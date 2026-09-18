@@ -5,10 +5,11 @@
 "%d free identifications" = "%d identifications gratuites";
 "%d recognitions left" = "%d reconnaissances restantes";
 "%d scans left" = "%d analyses restantes";
+"RESTORE" = "RESTAURER";
 "All yours — no subscription hassle!" = "Tout est à vous, sans abonnement !";
 "An identification is already in progress." = "Une identification est déjà en cours.";
 "BEST VALUE" = "MEILLEURE OFFRE";
-"Buy %d %@ for %@" = "Acheter %d %@ pour %@";
+"Buy %d %@ for %@" = "Achetez %d %@ à %@";
 "Claim %d" = "Réclamer %d";
 "Close" = "Fermer";
 "Completing your purchase…" = "Finalisation de votre achat…";
@@ -39,10 +40,10 @@
 "OK" = "OK";
 "One-time purchase" = "Achat unique";
 "One-time purchases" = "Achats uniques";
-"Pay once, enjoy forever" = "Payez une fois, profitez-en pour toujours";
+"Pay once, enjoy forever" = "Payez une fois, utilisez à vie";
 "Pay once, for lifetime" = "Payez une fois, utilisez à vie";
 "Pay once for lifetime access, or add recognition credits whenever you need them." = "Payez une fois pour un accès à vie, ou ajoutez des crédits de reconnaissance quand vous en avez besoin.";
-"PAY ONLY FOR WHAT YOU USE" = "PAYEZ UNIQUEMENT CE QUE VOUS UTILISEZ";
+"PAY ONLY FOR WHAT YOU USE" = "PAYEZ SELON VOTRE USAGE";
 "Perfect for dawn walks, forest trails, and quick field checks" = "Idéal pour les promenades à l’aube, les sentiers forestiers et les vérifications rapides sur le terrain";
 "Perfect for hikes, camping, and travel without signal" = "Idéal pour la randonnée, le camping et les voyages sans réseau";
 "POPULAR" = "POPULAIRE";
