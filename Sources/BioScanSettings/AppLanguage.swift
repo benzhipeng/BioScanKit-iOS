@@ -141,8 +141,12 @@ public struct AppLanguageView: View {
         let selected = BioScanAppLanguage.selectedIdentifier
         let isSelected = selected == identifier
         Button {
-            BioScanAppLanguage.select(identifier)
+            // Update the SwiftUI-backed value before persisting through the
+            // shared language service. Writing UserDefaults first can make
+            // @AppStorage see the following assignment as unchanged, so
+            // parent screens miss the refresh needed for localized resources.
             language = identifier
+            BioScanAppLanguage.select(identifier)
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: identifier.isEmpty ? "gearshape.fill" : "character.bubble")

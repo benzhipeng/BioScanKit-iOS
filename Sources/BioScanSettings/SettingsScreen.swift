@@ -2,6 +2,7 @@ import BioScanDesign
 import SwiftUI
 
 public struct SettingsScreen<Membership: View, AfterGeneral: View, Extra: View>: View {
+    @Environment(\.locale) private var locale
     @Environment(\.openURL) private var openURL
 
     @Binding private var appearanceID: String
@@ -329,9 +330,25 @@ public struct SettingsScreen<Membership: View, AfterGeneral: View, Extra: View>:
             resourceName: configuration.recommendedAppsResourceName,
             bundle: recommendationsBundle,
             excluding: configuration.currentAppID,
-            preferredLanguages: configuration.recommendedAppsPreferredLanguages
-                ?? RecommendedAppsLoader.mainAppPreferredLanguages()
+            preferredLanguages: recommendationLanguages
         )
+    }
+
+    private var recommendationLanguages: [String] {
+        let selectedLanguage = BioScanLocalization.shared.languageIdentifier
+        let activeLanguage = selectedLanguage.isEmpty ? locale.identifier : selectedLanguage
+        let configuredLanguages = configuration.recommendedAppsPreferredLanguages
+            ?? RecommendedAppsLoader.mainAppPreferredLanguages()
+
+        var languages = [
+            activeLanguage,
+            Locale(identifier: activeLanguage).language.languageCode?.identifier
+        ].compactMap { $0 }
+
+        for language in configuredLanguages where !languages.contains(language) {
+            languages.append(language)
+        }
+        return languages
     }
 
     private var appStoreURL: URL? {
