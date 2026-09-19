@@ -1,7 +1,7 @@
 import BioScanDesign
 import SwiftUI
 
-public struct SettingsScreen<Membership: View, Extra: View>: View {
+public struct SettingsScreen<Membership: View, AfterGeneral: View, Extra: View>: View {
     @Environment(\.openURL) private var openURL
 
     @Binding private var appearanceID: String
@@ -12,6 +12,7 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
     private let actions: SettingsActions
     private let recommendationsBundle: Bundle
     private let membership: Membership
+    private let afterGeneral: AfterGeneral
     private let extra: (SettingsPageMetrics) -> Extra
 
     public init(
@@ -21,12 +22,13 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
         recommendationsBundle: Bundle = .main,
         @ViewBuilder membership: () -> Membership,
         @ViewBuilder extra: @escaping () -> Extra
-    ) {
+    ) where AfterGeneral == EmptyView {
         self.configuration = configuration
         _appearanceID = appearanceID
         self.actions = actions
         self.recommendationsBundle = recommendationsBundle
         self.membership = membership()
+        self.afterGeneral = EmptyView()
         self.extra = { _ in extra() }
     }
 
@@ -37,12 +39,49 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
         recommendationsBundle: Bundle = .main,
         @ViewBuilder membership: () -> Membership,
         @ViewBuilder extra: @escaping (SettingsPageMetrics) -> Extra
+    ) where AfterGeneral == EmptyView {
+        self.configuration = configuration
+        _appearanceID = appearanceID
+        self.actions = actions
+        self.recommendationsBundle = recommendationsBundle
+        self.membership = membership()
+        self.afterGeneral = EmptyView()
+        self.extra = extra
+    }
+
+    public init(
+        configuration: SettingsConfiguration,
+        appearanceID: Binding<String>,
+        actions: SettingsActions = SettingsActions(),
+        recommendationsBundle: Bundle = .main,
+        @ViewBuilder membership: () -> Membership,
+        @ViewBuilder afterGeneral: () -> AfterGeneral,
+        @ViewBuilder extra: @escaping () -> Extra
     ) {
         self.configuration = configuration
         _appearanceID = appearanceID
         self.actions = actions
         self.recommendationsBundle = recommendationsBundle
         self.membership = membership()
+        self.afterGeneral = afterGeneral()
+        self.extra = { _ in extra() }
+    }
+
+    public init(
+        configuration: SettingsConfiguration,
+        appearanceID: Binding<String>,
+        actions: SettingsActions = SettingsActions(),
+        recommendationsBundle: Bundle = .main,
+        @ViewBuilder membership: () -> Membership,
+        @ViewBuilder afterGeneral: () -> AfterGeneral,
+        @ViewBuilder extra: @escaping (SettingsPageMetrics) -> Extra
+    ) {
+        self.configuration = configuration
+        _appearanceID = appearanceID
+        self.actions = actions
+        self.recommendationsBundle = recommendationsBundle
+        self.membership = membership()
+        self.afterGeneral = afterGeneral()
         self.extra = extra
     }
 
@@ -60,6 +99,8 @@ public struct SettingsScreen<Membership: View, Extra: View>: View {
                     || configuration.showsSystemSettings {
                     generalSection
                 }
+
+                afterGeneral
 
                 extra(metrics)
 

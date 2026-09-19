@@ -36,7 +36,21 @@ public enum BioScanAppLanguage {
     }
 
     public static func displayName(for identifier: String) -> String {
-        Locale(identifier: identifier).localizedString(forIdentifier: identifier) ?? identifier
+        // Keep the primary label in the language's own script instead of
+        // letting the current device locale decide how it is displayed.
+        let nativeNames: [String: String] = [
+            "de": "Deutsch",
+            "en": "English",
+            "es": "Español",
+            "fr": "Français",
+            "it": "Italiano",
+            "ja": "日本語",
+            "nl": "Nederlands",
+            "zh-Hans": "简体中文"
+        ]
+        return nativeNames[identifier]
+            ?? Locale(identifier: identifier).localizedString(forIdentifier: identifier)
+            ?? identifier
     }
 }
 
