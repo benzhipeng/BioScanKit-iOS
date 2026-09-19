@@ -46,6 +46,7 @@ public enum BioScanAppLanguage {
             "it": "Italiano",
             "ja": "日本語",
             "nl": "Nederlands",
+            "zh-CN": "简体中文",
             "zh-Hans": "简体中文"
         ]
         return nativeNames[identifier]
