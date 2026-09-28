@@ -122,8 +122,12 @@ public final class PaywallStore: ObservableObject {
     }
 
     public func purchaseSelectedProduct() async {
-        guard let product = selectedProduct else { return }
+        guard let product = selectedProduct else {
+            actions.track(.purchaseBlocked(reason: "no_product_selected"))
+            return
+        }
         guard products[product.id] != nil else {
+            actions.track(.purchaseBlocked(reason: "products_not_ready"))
             operation = .idle
             notice = PaywallNotice(
                 title: "Connecting to Store",
@@ -135,6 +139,7 @@ public final class PaywallStore: ObservableObject {
         notice = nil
         actions.track(.purchaseStarted(product.id))
         operation = .purchasing(productID: product.id)
+        var failureStage = "store_purchase"
 
         do {
             let result = try await billingClient.purchase(productID: product.id)
@@ -151,6 +156,7 @@ public final class PaywallStore: ObservableObject {
             case .lifetime:
                 apply(entitlement: .lifetime)
             case .credits(let amount):
+                failureStage = "credit_delivery"
                 if configuration.creditAccounting == .ledger {
                     guard creditLedger.addPurchasedCredits(
                         amount,
@@ -174,7 +180,11 @@ public final class PaywallStore: ObservableObject {
                 title: "Purchase Failed",
                 message: error.localizedDescription
             )
-            actions.track(.purchaseFailed(product.id))
+            actions.track(.purchaseFailed(
+                productID: product.id,
+                errorType: String(describing: type(of: error)),
+                failureStage: failureStage
+            ))
         }
     }
 
@@ -203,7 +213,7 @@ public final class PaywallStore: ObservableObject {
                 title: "Restore Failed",
                 message: error.localizedDescription
             )
-            actions.track(.restoreFailed)
+            actions.track(.restoreFailed(errorType: String(describing: type(of: error))))
         }
     }
 

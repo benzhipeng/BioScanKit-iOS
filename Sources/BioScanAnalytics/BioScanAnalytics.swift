@@ -175,22 +175,24 @@ public enum BioScanAnalytics {
             case "purchase_started":
                 if paywallSessionID == nil { paywallSessionID = UUID().uuidString.lowercased() }
                 purchaseAttemptID = UUID().uuidString.lowercased()
-            case "purchase_succeeded", "restore_purchases_succeeded":
+            case "purchase_succeeded", "restore_succeeded", "restore_purchases_succeeded":
                 paywallCompletedSuccessfully = true
-            case "paywall_dismissed" where paywallCompletedSuccessfully:
-                paywallSessionID = nil
-                purchaseAttemptID = nil
-                paywallContext = [:]
-                paywallCompletedSuccessfully = false
-                return nil
             default:
                 break
             }
-            for (key, value) in paywallContext {
-                normalized[key] = value
+            let isPaywallEvent = (eventName.hasPrefix("paywall_") && eventName != "paywall_requested")
+                || eventName.hasPrefix("purchase_")
+                || eventName.hasPrefix("restore_")
+            if isPaywallEvent {
+                for (key, value) in paywallContext where normalized[key] == nil {
+                    normalized[key] = value
+                }
+                if let paywallSessionID { normalized["paywall_session_id"] = paywallSessionID }
+                if let purchaseAttemptID { normalized["purchase_attempt_id"] = purchaseAttemptID }
+                if eventName == "paywall_dismissed" {
+                    normalized["did_convert"] = paywallCompletedSuccessfully
+                }
             }
-            if let paywallSessionID { normalized["paywall_session_id"] = paywallSessionID }
-            if let purchaseAttemptID { normalized["purchase_attempt_id"] = purchaseAttemptID }
             if ["paywall_dismissed", "purchase_succeeded", "purchase_cancelled", "purchase_failed"].contains(eventName) {
                 if eventName != "purchase_succeeded" || purchaseAttemptID != nil {
                     purchaseAttemptID = nil

@@ -458,13 +458,14 @@ public enum PaywallEvent: Equatable, Sendable {
     case productsLoadFailed(errorType: String)
     case productSelected(String)
     case purchaseStarted(String)
+    case purchaseBlocked(reason: String)
     case purchaseSucceeded(String)
     case purchaseCancelled(String)
-    case purchaseFailed(String)
+    case purchaseFailed(productID: String, errorType: String, failureStage: String)
     case restoreStarted
     case restoreSucceeded
     case restoreNothingFound
-    case restoreFailed
+    case restoreFailed(errorType: String)
 }
 
 public struct PaywallActions {
