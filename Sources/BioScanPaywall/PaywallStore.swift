@@ -24,6 +24,7 @@ public final class PaywallStore: ObservableObject {
     private let billingClient: any BillingClient
     private let creditLedger: CreditLedger
     private let actions: PaywallActions
+    private var didTrackAppearance = false
 
     public init(
         configuration: PaywallConfiguration,
@@ -74,11 +75,14 @@ public final class PaywallStore: ObservableObject {
     }
 
     public func appeared() {
+        guard !didTrackAppearance else { return }
+        didTrackAppearance = true
         actions.track(.shown(configuration.style))
     }
 
     public func select(_ productID: String) {
         guard configuration.catalog.product(id: productID) != nil else { return }
+        guard selectedProductID != productID else { return }
         selectedProductID = productID
         actions.track(.productSelected(productID))
     }
@@ -102,8 +106,18 @@ public final class PaywallStore: ObservableObject {
             )
             apply(entitlement: entitlementResult)
             operation = .idle
+            let productsState: String
+            if products.isEmpty {
+                productsState = "empty"
+            } else if products.count == configuration.catalog.products.count {
+                productsState = "loaded"
+            } else {
+                productsState = "partial"
+            }
+            actions.track(.productsLoaded(count: products.count, state: productsState))
         } catch {
             operation = .failed(message: error.localizedDescription)
+            actions.track(.productsLoadFailed(errorType: String(describing: error).split(separator: ":").first.map(String.init) ?? "unknown"))
         }
     }
 

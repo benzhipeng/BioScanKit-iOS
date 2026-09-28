@@ -454,6 +454,8 @@ public struct PaywallNotice: Identifiable, Equatable, Sendable {
 
 public enum PaywallEvent: Equatable, Sendable {
     case shown(PaywallStyle)
+    case productsLoaded(count: Int, state: String)
+    case productsLoadFailed(errorType: String)
     case productSelected(String)
     case purchaseStarted(String)
     case purchaseSucceeded(String)
