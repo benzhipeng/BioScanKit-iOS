@@ -48,6 +48,33 @@ final class RecommendedAppsTests: XCTestCase {
         )
     }
 
+    func testConfiguredRecommendationLanguageTakesPriorityOverStaleActiveLanguage() {
+        let languages = RecommendedAppsLoader.prioritizedLanguages(
+            configured: ["en", "en-US"],
+            activeLanguage: "zh-Hans",
+            fallbackLanguages: ["zh-Hans-CN"]
+        )
+
+        XCTAssertEqual(languages, ["en", "en-US", "zh-Hans", "zh-Hans-CN"])
+    }
+
+    func testEnglishDefaultPrecedesOtherLanguageFallbacks() {
+        let names = RecommendedAppsLoader.localizedResourceNames(
+            resourceName: "RecommendedApps",
+            preferredLanguages: ["en", "zh-Hans"]
+        )
+
+        XCTAssertEqual(
+            names,
+            [
+                "RecommendedApps.en",
+                "RecommendedApps",
+                "RecommendedApps.zh-Hans",
+                "RecommendedApps.zh"
+            ]
+        )
+    }
+
     func testLoadsLocalizedRecommendedAppsJSONBeforeDefault() throws {
         let bundle = try makeBundle(
             files: [

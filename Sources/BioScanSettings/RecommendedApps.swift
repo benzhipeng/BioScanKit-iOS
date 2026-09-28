@@ -136,6 +136,24 @@ public enum RecommendedAppsLoader {
         return languages
     }
 
+    static func prioritizedLanguages(
+        configured: [String]?,
+        activeLanguage: String,
+        fallbackLanguages: [String]
+    ) -> [String] {
+        let activeLanguages = [
+            activeLanguage,
+            Locale(identifier: activeLanguage).language.languageCode?.identifier
+        ].compactMap { $0 }
+        var languages = configured ?? activeLanguages
+
+        for language in activeLanguages + fallbackLanguages
+            where !languages.contains(language) {
+            languages.append(language)
+        }
+        return languages
+    }
+
     static func localizedResourceNames(
         resourceName: String,
         preferredLanguages: [String]
@@ -153,6 +171,11 @@ public enum RecommendedAppsLoader {
                 appendUnique("\(resourceName).zh", to: &names)
             } else if let languageCode = normalized.split(separator: "-").first {
                 appendUnique("\(resourceName).\(languageCode)", to: &names)
+                if languageCode == "en" {
+                    // The unsuffixed document is the canonical English resource.
+                    // Prefer it before falling back to another requested language.
+                    appendUnique(resourceName, to: &names)
+                }
             }
         }
         appendUnique(resourceName, to: &names)

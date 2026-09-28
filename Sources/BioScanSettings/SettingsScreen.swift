@@ -337,18 +337,11 @@ public struct SettingsScreen<Membership: View, AfterGeneral: View, Extra: View>:
     private var recommendationLanguages: [String] {
         let selectedLanguage = BioScanLocalization.shared.languageIdentifier
         let activeLanguage = selectedLanguage.isEmpty ? locale.identifier : selectedLanguage
-        let configuredLanguages = configuration.recommendedAppsPreferredLanguages
-            ?? RecommendedAppsLoader.mainAppPreferredLanguages()
-
-        var languages = [
-            activeLanguage,
-            Locale(identifier: activeLanguage).language.languageCode?.identifier
-        ].compactMap { $0 }
-
-        for language in configuredLanguages where !languages.contains(language) {
-            languages.append(language)
-        }
-        return languages
+        return RecommendedAppsLoader.prioritizedLanguages(
+            configured: configuration.recommendedAppsPreferredLanguages,
+            activeLanguage: activeLanguage,
+            fallbackLanguages: RecommendedAppsLoader.mainAppPreferredLanguages()
+        )
     }
 
     private var appStoreURL: URL? {
