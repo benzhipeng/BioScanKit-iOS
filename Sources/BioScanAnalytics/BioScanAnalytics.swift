@@ -115,9 +115,9 @@ public enum BioScanAnalytics {
         config.sessionReplay = sessionReplayEnabled
         if sessionReplayEnabled {
             config.sessionReplayConfig.screenshotMode = true
-            config.sessionReplayConfig.maskAllTextInputs = true
-            config.sessionReplayConfig.maskAllImages = true
-            config.sessionReplayConfig.maskAllSandboxedViews = true
+            config.sessionReplayConfig.maskAllTextInputs = false
+            config.sessionReplayConfig.maskAllImages = false
+            config.sessionReplayConfig.maskAllSandboxedViews = false
         }
 
         let protectedProperties: [String: Any] = [
