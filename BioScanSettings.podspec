@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BioScanSettings'
-  s.version = '0.1.8'
+  s.version = '0.1.9'
   s.summary = 'Shared settings UI for BioScan apps.'
   s.homepage = 'https://github.com/benzhipeng/BioScanKit-iOS'
   s.license = { :type => 'Proprietary' }

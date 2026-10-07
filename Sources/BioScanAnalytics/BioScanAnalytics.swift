@@ -164,9 +164,9 @@ public enum BioScanAnalytics {
                 normalizedProperties["product_id"] = product
             }
             if normalizedProperties["paywall_source"] == nil, let source = normalizedProperties["source"] as? String {
-                normalizedProperties["paywall_source"] = normalizedPaywallSource(source)
+                normalizedProperties["paywall_source"] = normalizedPaywallSource(source, properties: normalizedProperties)
             } else if let source = normalizedProperties["paywall_source"] as? String {
-                normalizedProperties["paywall_source"] = normalizedPaywallSource(source)
+                normalizedProperties["paywall_source"] = normalizedPaywallSource(source, properties: normalizedProperties)
             }
         }
         if canonicalName == "recognition_started" || canonicalName == "recognition_succeeded"
@@ -178,14 +178,17 @@ public enum BioScanAnalytics {
         }
         guard let properties = sanitize(normalizedProperties, eventName: canonicalName) else { return }
         PostHogSDK.shared.capture(canonicalName, properties: properties)
+        let remainingScans = (properties["remaining_scans"] as? NSNumber)?.intValue
+        let hasQuotaBlockReason = properties["reason"] as? String == "no_credits"
+            || properties["error_type"] as? String == "quota"
+            || properties["error_type"] as? String == "no_credits"
+        let isQuotaExhaustion = hasQuotaBlockReason
+            && (remainingScans == nil || remainingScans == 0)
         if canonicalName == "recognition_started" || canonicalName == "sound_identify_start" {
             PostHogSDK.shared.capture("core_action_started", properties: properties)
         } else if canonicalName == "recognition_succeeded" || canonicalName == "sound_identify_success" {
             PostHogSDK.shared.capture("core_action_completed", properties: properties)
-        } else if canonicalName == "recognition_blocked",
-                  ((properties["reason"] as? String == "no_credits")
-                    || (properties["error_type"] as? String == "quota")
-                    || (properties["error_type"] as? String == "no_credits")) {
+        } else if canonicalName == "recognition_blocked", isQuotaExhaustion {
             PostHogSDK.shared.capture("quota_exhausted", properties: properties)
         }
     }
@@ -203,16 +206,23 @@ public enum BioScanAnalytics {
         }
     }
 
-    private static func normalizedPaywallSource(_ source: String?) -> String {
-        guard let source else { return "other" }
+    private static func normalizedPaywallSource(_ source: String, properties: [String: Any]) -> String {
+        let remainingScans = (properties["remaining_scans"] as? NSNumber)?.intValue
+        let reasons = [properties["reason"] as? String, properties["trigger"] as? String]
+        let hasQuotaReason = reasons.contains { ["no_credits", "quota"].contains($0 ?? "") }
+        // A known positive balance is stronger evidence than a stale reason/trigger.
+        // Only fall back to the reason when the balance was not supplied.
+        let isQuotaEntry = remainingScans.map { $0 == 0 } ?? hasQuotaReason
         return switch source {
-        case "scanner", "recognition_gate", "recognition_quota", "home_import_quota", "home_quota_label", "home_quota_alert", "no_credits", "quota": "quota_exhausted"
+        case "quota_exhausted": isQuotaEntry ? "quota_exhausted" : "scanner"
+        case "scanner": isQuotaEntry ? "quota_exhausted" : "scanner"
+        case "recognition_gate", "recognition_quota", "home_import_quota", "home_quota_label", "home_quota_alert", "no_credits", "quota": isQuotaEntry ? "quota_exhausted" : "scanner"
         case "post_onboarding", "onboarding_complete": "onboarding"
         case "profile", "membership", "upgrade": "premium_feature"
         case "home_cta", "home_remaining_scans": "home"
         case "guide_demo_result": "result"
         case "purchase_page", "guide_demo": "premium_feature"
-        case "onboarding", "home", "result", "settings", "quota_exhausted", "premium_feature", "history", "favorites", "other": source
+        case "onboarding", "home", "result", "settings", "premium_feature", "history", "favorites", "other": source
         default: "other"
         }
     }
@@ -260,7 +270,7 @@ public enum BioScanAnalytics {
                 purchaseAttemptID = nil
                 paywallCompletedSuccessfully = false
                 paywallContext = normalized.filter {
-                    ["paywall_id", "variant", "placement", "trigger", "source", "paywall_source"].contains($0.key)
+                    ["paywall_id", "variant", "placement", "trigger", "source", "paywall_source", "remaining_scans", "reason"].contains($0.key)
                 }
             case "purchase_started":
                 if paywallSessionID == nil { paywallSessionID = UUID().uuidString.lowercased() }
@@ -274,14 +284,15 @@ public enum BioScanAnalytics {
                 return nil
             }
             let isPaywallEvent = (eventName.hasPrefix("paywall_") && eventName != "paywall_requested")
+                || eventName == "product_selected"
                 || eventName.hasPrefix("purchase_")
                 || eventName.hasPrefix("restore_")
             if isPaywallEvent {
                 for (key, value) in paywallContext where normalized[key] == nil {
                     normalized[key] = value
                 }
-                if let source = normalized["source"] as? String {
-                    normalized["paywall_source"] = normalizedPaywallSource(source)
+                if let source = (normalized["paywall_source"] as? String) ?? (normalized["source"] as? String) {
+                    normalized["paywall_source"] = normalizedPaywallSource(source, properties: normalized)
                 } else if normalized["paywall_source"] == nil {
                     normalized["paywall_source"] = "other"
                 }

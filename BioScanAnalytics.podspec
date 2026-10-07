@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BioScanAnalytics'
-  s.version = '0.1.8'
+  s.version = '0.1.9'
   s.summary = 'Shared PostHog analytics for BioScan apps.'
   s.homepage = 'https://github.com/benzhipeng/BioScanKit-iOS'
   s.license = { :type => 'Proprietary' }
